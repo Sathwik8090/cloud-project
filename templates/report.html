@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Sign In Report{% endblock %}
+
+{% block content %}
+<h2>Sign In Report</h2>
+{% if success %}
+    <p style="color: green;">Password meets the requirements. User and Password saven in DB</p>
+{% else %}
+    <p style="color: red;">Password does not meet the requirements:</p>
+    <ul>
+        {% for requirement in missing_requirements %}
+            <li>{{ requirement }}</li>
+        {% endfor %}
+    </ul>
+    {% if warning %}
+        <p style="color: red;">{{ warning }}</p>
+    {% endif %}
+{% endif %}
+<a href="{{ url_for('index') }}">Try Again</a>
+{% endblock %}
